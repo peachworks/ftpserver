@@ -25,7 +25,10 @@ describe('FTPServer', function () {
     port: 8080,
     pasvStart: 30000,
     pasvEnd: 31000,
-    logLevel: 60
+    logLevel: 60,
+    override: {
+      root: '.'
+    }
   };
 
   before((done) => {
@@ -103,7 +106,7 @@ describe('FTPServer', function () {
     describe('list', () => {
 
       it('runs successfully', (done) => {
-        ftpClient.list('/home/tyler/Documents', (hasError, data) => {
+        ftpClient.list('test', (hasError, data) => {
           expect(hasError).to.equal(false);
           expect(data).to.exist;
           done();
@@ -115,7 +118,8 @@ describe('FTPServer', function () {
     describe('cwd', () => {
 
       it('runs successfully', (done) => {
-        ftpClient.raw.cwd('/home/tyler/Documents', (err, data) => {
+        ftpClient.raw.cwd('test', (err, data) => {
+          if (err) done(err);
           expect(err).to.not.exist;
           expect(data.isError).to.equal(false);
           expect(data.code).to.equal(250);
@@ -124,7 +128,7 @@ describe('FTPServer', function () {
             expect(err2).to.not.exist;
             expect(resp.isError).to.equal(false);
             expect(resp.code).to.equal(257);
-            expect(resp.text).to.match(/\/home\/tyler\/Documents/i);
+            expect(resp.text).to.match(/".*\/test"$/i);
             done();
           });
         });
@@ -150,7 +154,7 @@ describe('FTPServer', function () {
       });
 
       it('fetches info on a single file', (done) => {
-        ftpClient.raw.stat('./tyler/ftpserver/test/test.txt', (err, data) => {
+        ftpClient.raw.stat('test.txt', (err, data) => {
           expect(err).to.not.exist;
           expect(data.code).to.equal(212);
           done();
