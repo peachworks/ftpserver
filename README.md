@@ -1,6 +1,10 @@
 # ftpserver [![NPM version][npm-image]][npm-url]
 > Simple and extensible promise-based FTP server.
 
+## Notice
+
+This is still under development, there may be issues if used in production.
+
 ## Index
 
 - [Installation](#installation)
