@@ -1,10 +1,10 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-exports['default'] = function (thisCmd, password) {
+exports.default = function (thisCmd, password) {
   var _this = this;
 
   var SENT_USER = this.username && ~['USER'].indexOf(this.previousCommand);
@@ -20,11 +20,11 @@ exports['default'] = function (thisCmd, password) {
   this.authenticated = false;
   this.requireAccount = false;
   return this.authenticate(this.username, password).then(function () {
-    var resp = arguments.length <= 0 || arguments[0] === undefined ? 230 : arguments[0];
+    var resp = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 230;
 
     if (resp !== 332) _this.authenticated = true;else _this.requireAccount = true;
     return _this.reply(resp);
-  })['catch'](function (err) {
+  }).catch(function (err) {
     _this.bunyan.error(err, { command: 'PASS' });
     _this.username = null;
     return _this.reply(530, 'Authentication failed.');

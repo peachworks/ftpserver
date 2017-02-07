@@ -1,9 +1,9 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
       value: true
 });
-exports['default'] = {
+exports.default = {
       // 100 - 199 :: Remarks
       110: 'Restart marker reply.',
       120: 'Service ready in %s minutes.',
@@ -79,4 +79,5 @@ x4z   Unspecified as yet.
 x5z   File system - These replies indicate the status of the
       Server file system vis-a-vis the requested transfer or
       other file system action.*/
+
 module.exports = exports['default'];

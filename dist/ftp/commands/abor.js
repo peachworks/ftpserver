@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-exports["default"] = function () {
+exports.default = function () {
   if (!this.dataSocket) {
     return this.reply(202);
   } else {

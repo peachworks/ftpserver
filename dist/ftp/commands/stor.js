@@ -1,26 +1,20 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _when = require('when');
-
-var _when2 = _interopRequireDefault(_when);
-
-exports['default'] = function (thisCmd, fileName) {
+exports.default = function (thisCmd, fileName) {
   var _this = this;
 
-  if (! ~['PORT', 'PASV'].indexOf(this.previousCommand)) {
+  if (!~['PORT', 'PASV'].indexOf(this.previousCommand)) {
     this.reply(503);
     return;
   }
 
   this.dataSocket.pause();
   var append = thisCmd === 'APPE';
-  return _when2['default'].promise(function (resolve, reject) {
+  return _when2.default.promise(function (resolve, reject) {
     return _this.fs.write(fileName, append).then(function (stream) {
       stream.on('error', function (err) {
         _this.dataSocket.emit('error', err);
@@ -40,7 +34,7 @@ exports['default'] = function (thisCmd, fileName) {
       return _this.reply(150);
     }).then(function () {
       _this.dataSocket.resume();
-    })['catch'](function (err) {
+    }).catch(function (err) {
       _this.bunyan.error(err, { command: 'STOR' });
       _this.reply(553);
       if (_this.dataSocket) {
@@ -50,5 +44,11 @@ exports['default'] = function (thisCmd, fileName) {
     });
   });
 };
+
+var _when = require('when');
+
+var _when2 = _interopRequireDefault(_when);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = exports['default'];

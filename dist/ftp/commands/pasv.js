@@ -1,20 +1,14 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _net = require('net');
-
-var _net2 = _interopRequireDefault(_net);
-
-exports['default'] = function () {
+exports.default = function () {
   var _this = this;
 
   function pasvError(err) {
-    var code = arguments.length <= 1 || arguments[1] === undefined ? 421 : arguments[1];
+    var code = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 421;
 
     this.bunyan.error(err, { command: 'PASV' });
     this.dataSocket = null;
@@ -41,7 +35,7 @@ exports['default'] = function () {
   }
 
   var pasvPort = this.server.pasvStart;
-  var pasv = _net2['default'].createServer();
+  var pasv = _net2.default.createServer();
   pasv.on('error', function (err) {
     if (err && err.code === 'EADDRINUSE' && pasvPort < _this.server.pasvEnd) {
       pasv.listen(++pasvPort);
@@ -89,5 +83,11 @@ exports['default'] = function () {
     _this.commandQueue.enable();
   }).listen(pasvPort);
 };
+
+var _net = require('net');
+
+var _net2 = _interopRequireDefault(_net);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = exports['default'];

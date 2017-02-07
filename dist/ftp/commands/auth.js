@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-exports["default"] = function (thisCmd, type) {
+exports.default = function (thisCmd, type) {
   return this.reply(502);
 };
 

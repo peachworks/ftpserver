@@ -1,10 +1,10 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-exports['default'] = function (thisCmd, dataEncoding) {
+exports.default = function (thisCmd, dataEncoding) {
   dataEncoding = dataEncoding.toLocaleUpperCase();
   switch (dataEncoding) {
     case 'A':

@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-exports["default"] = function (thisCmd, args) {
+exports.default = function (thisCmd, args) {
   // Have user be able to create their own functions to handle with SITE
   return this.reply(502);
 };

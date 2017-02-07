@@ -1,9 +1,9 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports['default'] = leftPad;
+exports.default = leftPad;
 var cache = ['', ' ', '  ', '   ', '    ', '     ', '      ', '       ', '        ', '         '];
 
 function leftPad(str, len, ch) {
@@ -26,5 +26,4 @@ function leftPad(str, len, ch) {
   }
   return pad + str;
 }
-
 module.exports = exports['default'];

@@ -1,11 +1,11 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-exports['default'] = function (thisCmd) {
-  var argDir = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
+exports.default = function (thisCmd) {
+  var argDir = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
   // 550 to reject
   var dir = (argDir || this.fs.dir).replace('"', '""').replace('\f', '');

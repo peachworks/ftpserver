@@ -1,22 +1,17 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _index = require('./index');
-
-var _index2 = _interopRequireDefault(_index);
-
-exports['default'] = function (cmd, command) {
+exports.default = function (cmd, command) {
   if (command) {
-    if (_index2['default'].hasOwnProperty(command)) {
-      var _commands$command = _index2['default'][command];
-      var syntax = _commands$command.syntax;
-      var help = _commands$command.help;
-      var obsolete = _commands$command.obsolete;
+    if (_index2.default.hasOwnProperty(command)) {
+      var _commands$command = _index2.default[command],
+          syntax = _commands$command.syntax,
+          help = _commands$command.help,
+          obsolete = _commands$command.obsolete;
+
 
       if (obsolete) this.reply(214, 'OBSOLETE', null, false);
       this.reply(214, syntax, null, false);
@@ -25,8 +20,8 @@ exports['default'] = function (cmd, command) {
       this.reply(502, 'Unknown command ' + command);
     }
   } else {
-    var supportedCommands = Object.keys(_index2['default']).filter(function (commd) {
-      return !_index2['default'][commd].obsolete;
+    var supportedCommands = Object.keys(_index2.default).filter(function (commd) {
+      return !_index2.default[commd].obsolete;
     }).reduce(function (prev, commd, index) {
       return prev + (index % 5 === 0 ? '\r\n' : '\t') + ' ' + commd;
     }, '');
@@ -36,5 +31,11 @@ exports['default'] = function (cmd, command) {
     this.reply(211, 'Use "HELP <cmd>" for sytax help.');
   }
 };
+
+var _index = require('./index');
+
+var _index2 = _interopRequireDefault(_index);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = exports['default'];

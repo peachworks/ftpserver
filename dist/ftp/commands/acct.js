@@ -1,10 +1,10 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-exports['default'] = function (thisCmd, accountName) {
+exports.default = function (thisCmd, accountName) {
   var SENT_USER_PASS = this.username && ~['PASS'].indexOf(this.previousCommand) && this.requireAccount;
   if (!SENT_USER_PASS) {
     return this.reply(532);

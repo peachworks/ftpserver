@@ -1,21 +1,13 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _when = require('when');
-
-var _when2 = _interopRequireDefault(_when);
-
-var _net = require('net');
-
-exports['default'] = function (thisCmd, info) {
+exports.default = function (thisCmd, info) {
   var _this = this;
 
-  return _when2['default']['try'](function () {
+  return _when2.default.try(function () {
     info = info.split(',');
     if (info.length !== 6) return _this.reply(425);
 
@@ -27,8 +19,8 @@ exports['default'] = function (thisCmd, info) {
 
     return { ip: ip, port: port };
   }).then(function (_ref) {
-    var ip = _ref.ip;
-    var port = _ref.port;
+    var ip = _ref.ip,
+        port = _ref.port;
 
     _this.dataSocket = new _net.Socket();
     _this.dataSocket.setEncoding(_this.server.dataEncoding);
@@ -57,5 +49,13 @@ exports['default'] = function (thisCmd, info) {
     return _this.reply(200);
   });
 };
+
+var _when = require('when');
+
+var _when2 = _interopRequireDefault(_when);
+
+var _net = require('net');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = exports['default'];

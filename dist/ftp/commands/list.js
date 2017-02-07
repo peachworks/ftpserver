@@ -1,30 +1,24 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _errors = require('../../errors');
-
-var _errors2 = _interopRequireDefault(_errors);
-
-exports['default'] = function (thisCmd) {
+exports.default = function (thisCmd) {
   var _this = this;
 
-  var dir = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
+  var dir = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
   var useDataSocket = thisCmd === 'STAT' ? false : true;
   var detailed = thisCmd === 'NLST' ? false : true;
 
-  if (useDataSocket && ! ~['PORT', 'PASV'].indexOf(this.previousCommand)) {
+  if (useDataSocket && !~['PORT', 'PASV'].indexOf(this.previousCommand)) {
     this.reply(503);
     return;
   }
 
   return this.fs.list(dir).tap(function (files) {
-    if (!files || !Array.isArray(files)) throw new _errors2['default'].InvalidListArgument();
+    if (!files || !Array.isArray(files)) throw new _errors2.default.InvalidListArgument();
   }).tap(function () {
     if (useDataSocket) return _this.reply(150);else return _this.reply(213, 'Status begin', null, false);
   }).then(function (files) {
@@ -37,10 +31,16 @@ exports['default'] = function (thisCmd) {
     if (useDataSocket) return _this.dataSocket.end();
   }).then(function () {
     if (useDataSocket) return _this.reply(226, 'Transfer OK');else return _this.reply(213, 'Status end');
-  })['catch'](function (err) {
+  }).catch(function (err) {
     _this.bunyan.error(err, { command: thisCmd });
     return _this.reply(431, err.code || 'No such directory');
   });
 };
+
+var _errors = require('../../errors');
+
+var _errors2 = _interopRequireDefault(_errors);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = exports['default'];

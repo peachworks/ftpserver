@@ -1,10 +1,10 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-exports['default'] = function (thisCmd, username) {
+exports.default = function (thisCmd, username) {
   if (this.username && this.username !== username) return this.reply(530, 'Username already set.');
   this.username = username;
   if (this.server.options.anonymous) {
